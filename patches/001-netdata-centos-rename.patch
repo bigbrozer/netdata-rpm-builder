@@ -1,0 +1,21 @@
+# Rename elX.centos --> elX in packages version
+# Source: https://github.com/Azure/azure-cli/blob/dev/build_scripts/rpm/azure-cli.spec
+#
+--- netdata.spec.in	2018-07-14 10:26:50.035042015 +0000
++++ netdata.spec.in.2	2018-07-14 10:30:25.753614375 +0000
+@@ -1,4 +1,15 @@
+ # SPDX-License-Identifier: GPL-3.0+
++
++# .el6.centos -> .el6
++%if 0%{?rhel} == 6
++  %define dist .el6
++%endif
++
++# .el7.centos -> .el7
++%if 0%{?rhel} == 7
++  %define dist .el7
++%endif
++
+ %global contentdir %{_datadir}/netdata
+ 
+ # This is temporary and should eventually be resolved. This bypasses
