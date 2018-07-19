@@ -2,6 +2,42 @@
 
 This will build RPMs for [netdata](https://github.com/firehol/netdata).
 
+## Quick start
+
+If you are only interested by the installation of netdata on your systems using RPM, follow this quick steps to setup the Yum/Dnf repository:
+
+```shell
+# For RHEL 7.x
+$ cat <<'EOF' | sudo tee /etc/yum.repos.d/bigbrozer_netdata.repo
+[bigbrozer_netdata]
+name=bigbrozer_netdata
+baseurl=https://packagecloud.io/bigbrozer/netdata/el/7/$basearch
+repo_gpgcheck=1
+gpgcheck=0
+enabled=1
+gpgkey=https://packagecloud.io/bigbrozer/netdata/gpgkey
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
+EOF
+
+# For RHEL 6.x, the package is not yet available...
+```
+
+Update Yum/Dnf cache:
+
+```shell
+$ sudo yum makecache fast
+$ sudo dnf makecache fast
+```
+
+Install package:
+
+```shell
+$ sudo yum install netdata
+$ sudo dnf install netdata
+```
+
 ## Build images
 
 ```shell
