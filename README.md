@@ -1,6 +1,6 @@
 # RPM builder for Netdata
 
-This will build RPMs for [netdata](https://github.com/firehol/netdata).
+This will build RPMs for [netdata](https://github.com/netdata/netdata).
 
 ## Quick start
 
