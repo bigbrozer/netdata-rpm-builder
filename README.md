@@ -2,7 +2,7 @@
 
 This will build RPMs for [netdata](https://github.com/firehol/netdata).
 
-## Quick start
+## Quick start
 
 If you are only interested by the installation of netdata on your systems using RPM, follow this quick steps to setup the Yum/Dnf repository:
 
