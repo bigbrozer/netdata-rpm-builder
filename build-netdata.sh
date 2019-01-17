@@ -1,18 +1,29 @@
 #!/bin/bash
 #
-set -eu
+set -eu -o pipefail
 
 PATH=/usr/bin
 
 # Clone netdata sources
 get_sources() {
+    local latest_release
     local rc
 
-    git clone https://github.com/firehol/netdata.git /build/src/netdata
+    # Get latest stable release
+    latest_release=$(curl -sSL \
+        https://api.github.com/repos/netdata/netdata/releases/latest \
+        | jq -r '.tag_name')
+
+    git clone \
+        --depth 1 \
+        --branch "${latest_release}" \
+        https://github.com/netdata/netdata.git \
+        /build/src/netdata
     
     rc=$?
     if [[ $rc == 0 ]]
     then
+        echo "Sources pointing to release ${latest_release}."
         echo "Fetching sources is complete. Done."
     else
         echo "Fetching sources has failed. Error."

@@ -10,20 +10,28 @@ RUN set -ex \
         && mkdir -p /build/dist /build/patches /build/src
 
 RUN set -ex \
+        && yum -y install epel-release \
+        && yum clean all \
+        && rm -rf /var/cache/yum/*
+
+RUN set -ex \
         && yum -y install \
-                rpm-build \
-                redhat-rpm-config \
-                yum-utils \
                 autoconf \
                 automake \
                 curl \
                 gcc \
                 git \
+                jq \
                 libmnl-devel \
                 libuuid-devel \
                 make \
                 pkgconfig \
-                zlib-devel
+                redhat-rpm-config \
+                rpm-build \
+                yum-utils \
+                zlib-devel \
+        && yum clean all \
+        && rm -rf /var/cache/yum/*
 
 COPY patches/* /build/patches
 COPY build-netdata.sh /build
